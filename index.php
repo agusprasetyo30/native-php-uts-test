@@ -1,4 +1,5 @@
 <?php
+   
    $menu = $_GET['menu'];
 
    // untuk mengatur isi dari $title
