@@ -31,3 +31,17 @@
   color: white;
   /* height: 2.5rem;            Footer height */
 }
+
+.tombol-tambah {
+  text-decoration: none;
+  background: #28a745;
+  color: white;
+  text-align: center;
+}
+
+.tombol-tambah:hover {
+  background: white;
+  transition: 0.2s all;
+  color: black;
+  border: 1px solid #28a745;
+}

@@ -29,6 +29,20 @@
          }
          return $rows;
       }
+
+      /**
+       * Digunakan untuk identifikasi halaman route agar lebih simpel
+       *
+       * @return void
+       */
+      function getUrlBase()
+      {
+         // Bisa diganti sesuai nama file
+         $location = '/riset/uts-web-nila';
+
+         // Ini bisa diganti https
+         return 'http://' .  $_SERVER['HTTP_HOST'] . $location;
+      }
    }
    
 ?>

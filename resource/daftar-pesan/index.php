@@ -1,8 +1,10 @@
 <?php
    ini_set('display_errors', 1);
-   require (__DIR__ . '/../../app/data/daftarPesan.php');
+
+   include (__DIR__ . '/../../app/data/daftarPesan.php');
    $daftarPesan = new daftarPesan();
-   
+
+   // echo __DIR__
    // print_r($daftarPesan->getUrl());
 ?>
 
@@ -10,18 +12,18 @@
    <div class="col-md-4">
       <div class="row">
          <div class="col-md-6">
-            <a href="">
+            <a href="?menu=daftar-pesan" style="text-decoration: none;">
                <div class="card">
-                  <div class="card-body text-center">
+                  <div class="card-body tombol-tambah">
                      Daftar Customer
                   </div>
                </div>
             </a>
          </div>
          <div class="col-md-6">
-            <a href="">
+            <a href="<?= $daftarPesan->getUrl() ?>tambah-makanan.php?menu=daftar-pesan" style="text-decoration: none;">
                <div class="card">
-                  <div class="card-body text-center">
+                  <div class="card-body tombol-tambah" >
                      Tambah Makanan
                   </div>
                </div>

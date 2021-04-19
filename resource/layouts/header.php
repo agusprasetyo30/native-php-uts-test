@@ -1,3 +1,7 @@
+<?php
+   $menu = $_GET['menu'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -5,8 +9,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title><?= $title ?></title>
-      <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap.min.css">
-      <link rel="stylesheet" href="./dist/css/style.css">
+      <link rel="stylesheet" href="../../vendors/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="../../dist/css/style.css">
    </head>
    <body>
       <nav class="navbar navbar-expand-md navbar-dark bg-danger">
@@ -18,16 +22,16 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item <?= $_GET['menu'] ?? 'active' ?>">
-                  <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="../../">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item <?= $_GET['menu'] == 'bio' ? 'active' : '' ?>">
-                  <a class="nav-link" href="?menu=bio">Biodata</a>
+                  <a class="nav-link" href="../../?menu=bio">Biodata</a>
                </li>
                <li class="nav-item <?= $_GET['menu'] == 'profil' ? 'active' : '' ?>">
-                  <a class="nav-link" href="./?menu=profil">Profil</a>
+                  <a class="nav-link" href="../../?menu=profil">Profil</a>
                </li>
                <li class="nav-item <?= $_GET['menu'] == 'daftar-pesan' ? 'active' : '' ?>">
-                  <a class="nav-link" href="./?menu=daftar-pesan">Daftar Pesan</a>
+                  <a class="nav-link" href="../../?menu=daftar-pesan">Daftar Pesan</a>
                </li>
             </ul>
          </div>
