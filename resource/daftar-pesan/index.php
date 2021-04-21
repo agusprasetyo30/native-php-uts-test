@@ -9,13 +9,13 @@
 ?>
 
 <div class="row mt-3 justify-content-center">
-   <div class="col-md-6">
+   <div class="col-md-7">
       <div class="row">
          <div class="col-md-6">
-            <a href="?menu=daftar-pesan" style="text-decoration: none;">
+            <a href="<?= $daftarPesan->getUrl() ?>tambah-customer.php?menu=daftar-pesan" style="text-decoration: none;">
                <div class="card">
                   <div class="card-body tombol-tambah">
-                     Tambah Customer
+                     Tambah Customer & Transaksi
                   </div>
                </div>
             </a>
@@ -54,7 +54,9 @@
          </tbody>
       </table>
    </div>
-   <div class="col-md-6">
-      cfakc
+   <div class="col-md-5">
+      <h4>
+         Detail Transaksi
+      </h4>
    </div>
 </div>

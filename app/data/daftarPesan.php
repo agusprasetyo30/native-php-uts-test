@@ -129,6 +129,18 @@
          // return false;
       }
 
+      /**
+       * Undocumented function
+       *
+       * @return string
+       */
+      function customerIdGenerated() : string
+      {
+         $get_id = $this->query('SELECT id FROM customer WHERE id IN (SELECT MAX(id) FROM customer)');
 
+         $id_customer = 'CUST-' . ((int)$get_id + 1);
+         
+         return $id_customer;
+      }
    }
 ?>
