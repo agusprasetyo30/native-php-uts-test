@@ -6,7 +6,6 @@ $title = "Tambah Makanan";
 $data = new daftarPesan();
 
 include('../layouts/header.php');
-// print_r($data->pagination(4, "SELECT * FROM makanan"));
 ?>
 
 <div class="row justify-content-center mt-3">
@@ -72,6 +71,8 @@ include('../layouts/header.php');
 </div>
 
 <?php
+print_r($data->getHalamanCurrent());
+
 include_once('../layouts/footer.php');
 
 

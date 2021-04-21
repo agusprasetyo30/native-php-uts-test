@@ -27,15 +27,13 @@
        *
        * @param [int] $batasTampil
        * @param [string] $query
-       * @return object
        */
-      function pagination($batasTampil, $query) : object
+      function pagination(int $batasTampil, $query) : object
       {
          $halaman = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-         $halaman_awal = ($halaman > 1) ? ($halaman * $batasTampil) - $batasTampil : 0;
+         $this->halaman_current = ($halaman > 1) ? ($halaman * $batasTampil) - $batasTampil : 0;
+         // $this->halaman_current = ($halaman > 1) ? ($halaman * $batasTampil) / $batasTampil : 0;
          
-         $this->halaman_current = $halaman_awal;
-
          $this->previous = $halaman - 1;
          $this->next = $halaman + 1;
 
@@ -43,9 +41,9 @@
          $jml_data = mysqli_num_rows($data);
          $this->total_halaman = ceil($jml_data / $batasTampil);
          
-         $data_pagination = mysqli_query($this->koneksi, $query . ' limit ' . $halaman_awal . ', ' . $batasTampil);
+         $data_pagination = mysqli_query($this->koneksi, $query . ' limit ' . $this->halaman_current . ', ' . $batasTampil);
          
-         $this->nomer = 1 + $halaman_awal;
+         $this->nomer = 1 + $this->halaman_current;
 
          return $data_pagination;
       }
@@ -59,6 +57,13 @@
       {
          return (int)$this->nomer++;
       }
+      
+      function getHalamanCurrent() : int
+      {
+         return $this->halaman_current;
+      }
+
+
 
       /**
        * Undocumented function
@@ -88,7 +93,11 @@
             
 
          for ($i=1; $i <= $this->total_halaman; $i++) { 
-            $number_link .= "<li class='page-item'><a class='page-link' href='?menu=" . $menu . "&page=" . $i . "'>" . $i . "</a></li>";
+            if ($this->next - 1 == $i) {
+               $number_link .= "<li class='page-item active'><a class='page-link' href='?menu=" . $menu . "&page=" . $i . "'>" . $i . "</a></li>";
+            } else {
+               $number_link .= "<li class='page-item'><a class='page-link' href='?menu=" . $menu . "&page=" . $i . "'>" . $i . "</a></li>";
+            }
          }
             
          $next = "<li class='page-item'> <a class='page-link'" . $link_next . ">Next</a>";
@@ -129,6 +138,8 @@
          // return false;
       }
 
+      /************* CUSTOMER ************* */
+
       /**
        * Undocumented function
        *
@@ -136,11 +147,54 @@
        */
       function customerIdGenerated() : string
       {
-         $get_id = $this->query('SELECT id FROM customer WHERE id IN (SELECT MAX(id) FROM customer)');
+         $get_id = $this->query("SELECT id FROM customer WHERE id IN (SELECT MAX(id) FROM customer)");
 
-         $id_customer = 'CUST-' . ((int)$get_id + 1);
+         $id_customer = 'CUST-' . ((int)($get_id[0]['id']) + 1);
          
          return $id_customer;
+      }
+
+      /**
+       * Undocumented function
+       *
+       * @param [type] $input
+       * @return void
+       */
+      function addCustomerTransaction($input) : bool
+      {
+         $id_customer = $input['id_customer'];
+         $nama = $input['name'];
+         $status = $input['status'];
+         $pesan_makanan = $input['pesan_makanan'];
+
+         $query_customer = "INSERT INTO customer (`id`, `id_customer`, `nama`, `status`) VALUES (NULL, '$id_customer', '$nama', '$status')";
+
+         mysqli_query($this->koneksi, $query_customer);
+         
+         // $insert_id = mysqli_insert_id($this->koneksi);
+
+         // echo $insert_id;
+         // for ($i=0; $i < count($pesan_makanan) ; $i++) {
+         //    $query_pesanan = "INSERT INTO pesanan ('id', 'id_customer', 'id_makanan') VALUES(NULL, '$insert_id', '$pesan_makanan[$i]')";
+         //    mysqli_query($this->koneksi, $query_pesanan);
+         // }
+
+         // if (mysqli_affected_rows($this->koneksi)) {
+         //    echo "berhasil hore";
+            
+         //    print_r($pesan_makanan);
+         // } else {
+         //    mysqli_error($this->koneksi);
+         // }
+
+         return mysqli_affected_rows($this->koneksi);
+      }
+
+      function ruleDiscount($status)
+      {
+         if ($status) {
+            # code...
+         }
       }
    }
 ?>

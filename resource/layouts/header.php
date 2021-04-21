@@ -11,6 +11,7 @@
       <title><?= $title ?></title>
       <link rel="stylesheet" href="../../vendors/bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="../../dist/css/style.css">
+      <link rel="stylesheet" href="../../vendors/select2/css/select2.min.css">
    </head>
    <body>
       <nav class="navbar navbar-expand-md navbar-dark bg-danger">
