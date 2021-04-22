@@ -160,7 +160,7 @@
        * @param [type] $input
        * @return void
        */
-      function addCustomerTransaction($input) : bool
+      function addCustomerTransaction($input)
       {
          $id_customer = $input['id_customer'];
          $nama = $input['name'];
@@ -171,21 +171,13 @@
 
          mysqli_query($this->koneksi, $query_customer);
          
-         // $insert_id = mysqli_insert_id($this->koneksi);
+         $insert_id = mysqli_insert_id($this->koneksi);
 
          // echo $insert_id;
-         // for ($i=0; $i < count($pesan_makanan) ; $i++) {
-         //    $query_pesanan = "INSERT INTO pesanan ('id', 'id_customer', 'id_makanan') VALUES(NULL, '$insert_id', '$pesan_makanan[$i]')";
-         //    mysqli_query($this->koneksi, $query_pesanan);
-         // }
-
-         // if (mysqli_affected_rows($this->koneksi)) {
-         //    echo "berhasil hore";
-            
-         //    print_r($pesan_makanan);
-         // } else {
-         //    mysqli_error($this->koneksi);
-         // }
+         for ($i=0; $i < count($pesan_makanan) ; $i++) {
+            $query_pesanan = "INSERT INTO pesanan (`id`, `id_customer`, `id_makanan`) VALUES(NULL, '$insert_id', '$pesan_makanan[$i]')";
+            mysqli_query($this->koneksi, $query_pesanan);
+         }
 
          return mysqli_affected_rows($this->koneksi);
       }
